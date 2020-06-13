@@ -1,0 +1,30 @@
+<SCript>
+    class Dom {
+        async *getDomName(prepose, No) {
+            try {
+                while (true) {
+                    let arg = yield prepose + (--No);
+                    if (No == 0) return;
+                }
+            } catch {
+                yield prepose + '0';
+            }
+        }
+    }
+
+    let dom = new Dom();
+    let fn1 = async function () {
+        let dom1 = dom.getDomName('text', '4');
+        console.log(await dom1.next());
+        console.log(await dom1.throw());
+        console.log(await dom1.next());
+        let dom2 = dom.getDomName('check', '4');
+        for await (var i of dom2) {
+            console.log(i);
+
+        }
+
+
+    }
+    fn1();
+</SCript>

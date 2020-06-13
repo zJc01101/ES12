@@ -1,0 +1,34 @@
+<script>
+    let grade = function (score) {
+        return new Promise((resolve, reject) => {
+            if (score >= 60) reject(score - 60);
+            else resolve('不及格没有绩点')
+        })
+    }
+
+    let gradePoint = function (grade) {
+        return new Promise((resolve, reject) => {
+            let gp = 1 + grade * 0.1;
+            if (gp > 5) reject('非法成绩没有绩点')
+            else(resolve(gp))
+        })
+    }
+
+    async function fn(sc) {
+        try {
+            let gd = await grade(sc);
+            let gp = await gradePoint(sc);
+            console.log(`${sc}分，绩点${gp}`);
+        } catch (e) {
+            console.log(`${sc}分，绩点${e}`);
+
+        }
+    }
+
+    function call() {
+        fn(61);
+        fn(50);
+        fn(102);
+    }
+    call();
+</script>

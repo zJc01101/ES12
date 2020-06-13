@@ -1,0 +1,22 @@
+<script>
+    let posStr = function (str) {
+        let pStr1 = new Promise((resolve, reject) => {
+            if (str.startsWith("p")) reject('字符串不能以p开头');
+            else(resolve('符合第一个要求'));
+        })
+        let pStr2 = new Promise((resolve, reject) => {
+            if (str.endsWith("p")) reject('字符串不能以p结尾');
+            else(resolve('符合第二个要求'));
+        })
+        return Promise.all([pStr1, pStr2])
+    }
+    let arr = ['pyhton', 'jsp', 'java'];
+
+    for (let p of arr) {
+        let po = posStr(p)
+            .then(resolve => console.log(p, resolve))
+            .catch(reject => console.log(p, reject))
+
+
+    }
+</script>
